@@ -12,9 +12,6 @@ import java.util.Random;
 
 public class AnimalLoader extends AsyncTaskLoader<AnimalClass> {
 
-    AnimalBundle animalBundle;
-
-
     public AnimalLoader(Context context) {
         super(context);
     }
