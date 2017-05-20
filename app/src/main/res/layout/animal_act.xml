@@ -13,12 +13,9 @@
         android:layout_height="wrap_content"
         android:text="@string/i_want_new_animal"/>
 
-    <TextView
-        android:id="@+id/anim_text"
-        android:gravity="center_horizontal"
+    <ListView
+        android:id="@+id/list_view"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        tools:text="animal"/>
+        android:layout_height="match_parent"/>
 
 </LinearLayout>
