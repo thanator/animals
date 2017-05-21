@@ -10,18 +10,18 @@ import java.util.List;
 public class AnimalGenerator {
 
 
-    public static final List<AnimalClass> provadeAnimal(){
+    public static final List<Animal> provadeAnimal(){
 
-        List<AnimalClass> animals = new ArrayList<>();
-        animals.add(new AnimalClass("Вася", "Кот", 10));
-        animals.add(new AnimalClass("Рекс", "Собака", 8));
-        animals.add(new AnimalClass("Хлоя", "Хомячок", 5));
-        animals.add(new AnimalClass("Маруся", "Собака", 11));
-        animals.add(new AnimalClass("Лариса", "Кот", 18));
-        animals.add(new AnimalClass("Петя", "Попугай", 4));
-        animals.add(new AnimalClass("Ваня", "Ленивец", 21));
-        animals.add(new AnimalClass("Маша", "Кошка", 14));
-        animals.add(new AnimalClass("Саня", "Петух", 6));
+        List<Animal> animals = new ArrayList<>();
+        animals.add(new Animal("Вася", "Кот", 10));
+        animals.add(new Animal("Рекс", "Собака", 8));
+        animals.add(new Animal("Хлоя", "Хомячок", 5));
+        animals.add(new Animal("Маруся", "Собака", 11));
+        animals.add(new Animal("Лариса", "Кот", 18));
+        animals.add(new Animal("Петя", "Попугай", 4));
+        animals.add(new Animal("Ваня", "Ленивец", 21));
+        animals.add(new Animal("Маша", "Кошка", 14));
+        animals.add(new Animal("Саня", "Петух", 6));
         return animals;
 
     }

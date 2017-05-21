@@ -17,10 +17,10 @@ import java.util.List;
 
 public class AnimalAdapter extends BaseAdapter {
 
-    private List<AnimalClass> mAnimal;
+    private List<Animal> mAnimal;
 
 
-    public void setAnimals(List<AnimalClass> animals){
+    public void setAnimals(List<Animal> animals){
         mAnimal.clear();
         mAnimal.addAll(animals);
         notifyDataSetChanged();
@@ -54,15 +54,19 @@ public class AnimalAdapter extends BaseAdapter {
             LayoutInflater inflater = LayoutInflater.from(parent.getContext());
             view = inflater.inflate( R.layout.list_elem, parent, false);
             AnimHolder anim = new AnimHolder();
-            anim.text = (TextView) view.findViewById(R.id.list_elem);
+            anim.textAge = (TextView) view.findViewById(R.id.age_id);
+            anim.textName = (TextView) view.findViewById(R.id.name_id);
+            anim.textType = (TextView) view.findViewById(R.id.type_id);
             view.setTag(anim);
         }
 
 
         AnimHolder anim = (AnimHolder) view.getTag();
-        AnimalClass animalClass = mAnimal.get(position);
+        Animal animalClass = mAnimal.get(position);
+        anim.textAge.setText(""+animalClass.getmAge());
+        anim.textName.setText(animalClass.getmName());
+        anim.textType.setText(animalClass.getmSpecies());
 
-        anim.text.setText(animalClass.toString());
 
         return view;
     }
@@ -71,7 +75,7 @@ public class AnimalAdapter extends BaseAdapter {
 
 
     private static class AnimHolder {
-        public TextView text;
+        public TextView textName, textType, textAge;
 
     }
 

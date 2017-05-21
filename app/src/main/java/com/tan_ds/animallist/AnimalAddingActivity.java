@@ -16,16 +16,16 @@ import android.widget.EditText;
  * Created by Tan-DS on 5/20/2017.
  */
 
-public class AnimalAdding extends AppCompatActivity {
+public class AnimalAddingActivity extends AppCompatActivity {
 
     private AnimalStorage mAnimalStorage;
 
     private EditText mNameNew, mAgeNew, mSpicieNew;
     private Button button;
-    private EditText[] mEditText;
+    private EditText[] mEditTexts;
 
     public static Intent newIntent(Context context) {
-        Intent intent = new Intent(context, AnimalAdding.class);
+        Intent intent = new Intent(context, AnimalAddingActivity.class);
         return intent;
     }
 
@@ -41,8 +41,8 @@ public class AnimalAdding extends AppCompatActivity {
         mAgeNew = (EditText) findViewById(R.id.new_age);
         mSpicieNew = (EditText) findViewById(R.id.new_spicie);
         button = (Button) findViewById(R.id.butt_add_new_animal);
-        mEditText = new EditText[]{mSpicieNew, mAgeNew, mNameNew};
-        for (EditText editText: mEditText){
+        mEditTexts = new EditText[]{mSpicieNew, mAgeNew, mNameNew};
+        for (EditText editText: mEditTexts){
             editText.addTextChangedListener(new TextWatcherMy());
         }
 
@@ -58,7 +58,7 @@ public class AnimalAdding extends AppCompatActivity {
         String Spic = mSpicieNew.getText().toString();
         String Name = mNameNew.getText().toString();
         int Age = Integer.valueOf(mAgeNew.getText().toString());
-        mAnimalStorage.addAnimal(new AnimalClass(Name, Spic, Age));
+        mAnimalStorage.addAnimal(new Animal(Name, Spic, Age));
 
         finish();
     }
@@ -78,7 +78,7 @@ public class AnimalAdding extends AppCompatActivity {
         @Override
         public void afterTextChanged(Editable s) {
             boolean buttonEnabled = true;
-            for (EditText editText : mEditText) {
+            for (EditText editText : mEditTexts) {
                 if (TextUtils.isEmpty(editText.getText())) {
                     buttonEnabled = false;
                     break;

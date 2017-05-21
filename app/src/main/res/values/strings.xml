@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">AnimalList</string>
     <string name="i_want_new_animal">I want new animal!</string>
+    <string name="nameAnimal">Name</string>
+    <string name="typeAnimal">Type</string>
+    <string name="ageAnimal">Age</string>
 </resources>

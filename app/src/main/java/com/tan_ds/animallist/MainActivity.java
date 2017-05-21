@@ -16,54 +16,47 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     private final static int LOADER_ID = 123;
-    private final static String TAG = "RatesActivity";
     private Button mButt;
-    private TextView mTextView;
     private ListView listViewl;
-    AnimalAdapter animalAdapter;
-    private AnimalStorage mAnimalLoader;
+    AnimalAdapter mAnimalAdapter;
+    private AnimalStorage mAnimalStorage;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        AnimalStorageProvider AnimalsProvider = (AnimalStorageProvider) getApplication();
-        mAnimalLoader = AnimalsProvider.getAnimalStorage();
+        AnimalStorageProvider mAnimalsProvider = (AnimalStorageProvider) getApplication();
+        mAnimalStorage = mAnimalsProvider .getAnimalStorage();
         setContentView(R.layout.animal_act);
         mButt = (Button) findViewById(R.id.butt_refresh);
 
-        mTextView = (TextView) findViewById(R.id.list_elem);
-
         listViewl = (ListView) findViewById(R.id.list_view);
-        animalAdapter = new AnimalAdapter();
-        listViewl.setAdapter(animalAdapter);
+        mAnimalAdapter = new AnimalAdapter();
+        listViewl.setAdapter(mAnimalAdapter);
 
         getSupportLoaderManager().initLoader(LOADER_ID, null, new AnimalsLoaderCallBacks());
-        //mTextView.setText();
         mButt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(AnimalAdding.newIntent(MainActivity.this));
+                startActivity(AnimalAddingActivity.newIntent(MainActivity.this));
 
             }
         });
 
     }
 
-    private class AnimalsLoaderCallBacks implements LoaderManager.LoaderCallbacks <List<AnimalClass>>{
-
-        @Override
-        public Loader<List<AnimalClass>> onCreateLoader(int id, Bundle args) {
-            return new AnimalLoader(MainActivity.this, mAnimalLoader);
+    private class AnimalsLoaderCallBacks implements LoaderManager.LoaderCallbacks <List<Animal>>{
+         @Override
+        public Loader<List<Animal>> onCreateLoader(int id, Bundle args) {
+            return new AnimalLoader(MainActivity.this, mAnimalStorage);
         }
 
         @Override
-        public void onLoadFinished(Loader<List<AnimalClass>> loader, List<AnimalClass> data) {
-            animalAdapter.setAnimals(data);
-           // mTextView.setText(data.toString());
+        public void onLoadFinished(Loader<List<Animal>> loader, List<Animal> data) {
+            mAnimalAdapter.setAnimals(data);
         }
 
         @Override
-        public void onLoaderReset(Loader<List<AnimalClass>> loader) {
+        public void onLoaderReset(Loader<List<Animal>> loader) {
 
         }
 

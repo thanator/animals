@@ -12,10 +12,10 @@ import java.util.Random;
  * Created by Tan-DS on 5/18/2017.
  */
 
-public class AnimalLoader extends AsyncTaskLoader<List<AnimalClass>> implements AnimalStorage.animaladdedlistmer{
+public class AnimalLoader extends AsyncTaskLoader<List<Animal>> implements AnimalStorage.AnimaLaddedListmer{
 
     private final AnimalStorage mAnimalStorage;
-    private List<AnimalClass> firstStart;
+    private List<Animal> mAnimalsCache;
 
 
     public AnimalLoader(Context context, AnimalStorage animalStorage) {
@@ -27,16 +27,16 @@ public class AnimalLoader extends AsyncTaskLoader<List<AnimalClass>> implements 
     @Override
     protected void onStartLoading() {
         super.onStartLoading();
-        if (takeContentChanged() || firstStart == null) {
+        if (takeContentChanged() || mAnimalsCache == null) {
             Log.e("will it work?", "onStartLoading-before");
             forceLoad();
         }
     }
 
     @Override
-    public void deliverResult(List<AnimalClass> data) {
+    public void deliverResult(List<Animal> data) {
         super.deliverResult(data);
-        firstStart = data;
+        mAnimalsCache = data;
     }
 
     @Override
@@ -46,20 +46,12 @@ public class AnimalLoader extends AsyncTaskLoader<List<AnimalClass>> implements 
     }
 
     @Override
-    public List<AnimalClass> loadInBackground() {
-
+    public List<Animal> loadInBackground() {
         return  mAnimalStorage.returnAnimals();
-
-        //Random rand = new Random();
-        //new AnimalGenerator().provadeAnimal().get(rand.nextInt(10));
-
-
     }
 
     @Override
-    public void onadded() {
-
-        Log.e("will it work?", "OnAnimalLoaded");
+    public void onAdding() {
         onContentChanged();
     }
 }
