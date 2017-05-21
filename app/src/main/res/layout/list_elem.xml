@@ -7,6 +7,10 @@
     android:layout_height="wrap_content"
     xmlns:tools="http://schemas.android.com/tools"
     tools:text="Имя Вид Возраст"
-    android:layout_margin="12dp">
+    android:layout_margin="12dp"
+    android:textSize="16sp"
+    android:textAlignment="textStart"
+    android:paddingLeft="16dp"
+    tools:ignore="RtlCompat">
 
 </TextView>

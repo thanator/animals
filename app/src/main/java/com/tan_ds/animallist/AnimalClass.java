@@ -45,6 +45,6 @@ public class AnimalClass {
 
     @Override
     public String toString() {
-        return name + " " + mSpecies + " " + mAge;
+        return "\tИмя: " + name + "\n\tВид: " + mSpecies + "\n\tВозраст: " + mAge;
     }
 }
